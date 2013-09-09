@@ -12,13 +12,6 @@
    - name: group hosts by distribution
      action: group_by key={{ansible_distribution}}
 
-#
-# For RedHat hosts, register to RHN
-#
-- hosts: RedHat
-  tasks:
-   - include: tasks/rhn_register.yml
-     when: rhn_method is defined
 
 #
 # For all other hosts, install CFME
@@ -30,7 +23,18 @@
     private: no
 
   tasks:
-   
+   - name: Import IP address
+     action: add_host name=$ipaddr groups=Squid ansible_ssh_pass=redhat ansible_ssh_user=root
 
   handlers:
    - include: handlers/restart_services.yml
+
+#
+# For RedHat hosts, register to RHN
+#
+- hosts: Squid
+  tasks:
+   - include: tasks/rhn_register.yml
+   - include: tasks/update_system.yml
+#   - include: tasks/reboot_system.yml
+   - include: tasks/squid_setup.yml
