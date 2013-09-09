@@ -25,9 +25,7 @@ Sets up a proxy server for testing.
 3. Drink coffee
 ## What the installer does
 1. Updates the system
-2. Reboots the machine
-3. Installs and sets up Squid
-4. Reboots again
+2. Installs and sets up Squid
 
 ## Issues and TODO
  * Work in progress
