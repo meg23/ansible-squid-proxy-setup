@@ -1,8 +1,8 @@
-# ansible-cfme
+# ansible-squid-proxy
 
 Sets up a proxy server for testing.
 
-## ansible-cfme repository/structure
+## ansible-squid-proxy repository/structure
 
  * files - files and templates for use in playbooks/tasks
  * group_vars - customize deployment by setting/replacing variables
