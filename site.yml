@@ -26,9 +26,6 @@
    - name: Import IP address
      action: add_host name=$ipaddr groups=Squid ansible_ssh_pass=redhat ansible_ssh_user=root
 
-  handlers:
-   - include: handlers/restart_services.yml
-
 #
 # For RedHat hosts, register to RHN
 #
