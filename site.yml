@@ -1,37 +1,6 @@
 ---
 # Base playbook for cfme installation
 
-#
-# Dynamically create host groups based on distribution
-#
 - hosts: all
   tasks:
-   - name: gather site specific fact data
-     action: site_facts
-
-   - name: group hosts by distribution
-     action: group_by key={{ansible_distribution}}
-
-
-#
-# For all other hosts, install CFME
-#
-- hosts: local
-  vars_prompt:
-  - name: "ipaddr"
-    prompt: "Enter IP address of the machine which will be set up"
-    private: no
-
-  tasks:
-   - name: Import IP address
-     action: add_host name=$ipaddr groups=Squid ansible_ssh_pass=redhat ansible_ssh_user=root
-
-#
-# For RedHat hosts, register to RHN
-#
-- hosts: Squid
-  tasks:
-   - include: tasks/rhn_register.yml
-   - include: tasks/update_system.yml
-#   - include: tasks/reboot_system.yml
    - include: tasks/squid_setup.yml

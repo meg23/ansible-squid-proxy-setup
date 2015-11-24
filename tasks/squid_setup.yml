@@ -1,14 +1,13 @@
 - name: Squid install
-  yum: name=squid state=latest
+  apt: pkg=squid 
 
 - name: Squid config copy
-  copy: src=files/squid.conf dest=/etc/squid/squid.conf
+  copy: src=files/squid.conf dest=/etc/squid3/squid.conf
 
 - name: Squid passwords copy
-  copy: src=files/passwords_basic dest=/etc/squid/passwords_basic
+  copy: src=files/passwords_basic dest=/etc/squid3/passwords_basic
 
-- name: Service start
-  service: name=squid state=started
+- name: Service restart
+  command: service squid3 restart
+  sudo: true
 
-- name: Service enable
-  service: name=squid enabled=yes
