@@ -7,3 +7,4 @@ urllib2.install_opener(opener)
 
 conn = urllib2.urlopen('http://python.org')
 return_str = conn.read()
+print(return_str)
